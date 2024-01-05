@@ -6,6 +6,7 @@ import ErrorModal from './UI/ErrorModal';
 const UserInput=(props)=>{
    const userNameRef=useRef();
    const userAgeRef=useRef();
+   const userCollegeRef=useRef();
     // const[userName,setUserName]=useState("")
     // const [userAge,setUserAge]=useState("")
     const [error,setError]=useState();
@@ -19,6 +20,7 @@ const UserInput=(props)=>{
         e.preventDefault();
         const enteredName=userNameRef.current.value;
         const enteredAge=userAgeRef.current.value;
+        const enteredCollege=userCollegeRef.current.value;
         if(enteredName.trim().length===0||enteredAge.trim().length===0){
           setError({
             title:"InValid Details ",
@@ -34,11 +36,13 @@ const UserInput=(props)=>{
         }
         const user={
             name:enteredName,
-            age:enteredAge
+            age:enteredAge,
+            college:enteredCollege
         }
         props.userDetails(user)
         userNameRef.current.value=''
         userAgeRef.current.value=''
+        userCollegeRef.current.value=''
     }
     const errorHandler=()=>{
        setError(null);
@@ -61,6 +65,8 @@ const UserInput=(props)=>{
         <input type='text' name='name' id="name" ref={userNameRef}/>
         <label>Age</label>
         <input type='number' name='age' id="age" ref={userAgeRef}/>
+        <input type='text' name='college' id="college" ref={userCollegeRef}/>
+
         <button type='submit'>Add User</button>
         </form>
          

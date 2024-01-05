@@ -6,7 +6,8 @@ import NewUser from './components/NewUser';
 function App() {
   const [users,setUsers]=useState([{
     name:"srinivas",
-    age:25
+    age:25,
+    college:"srinivasa"
   }
      
   ]
