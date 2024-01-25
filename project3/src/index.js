@@ -7,7 +7,10 @@ import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-<AuthContextProvider>
+ 
+    <AuthContextProvider>
     <App />
-</AuthContextProvider>
+   </AuthContextProvider>
+    
+ 
 );
