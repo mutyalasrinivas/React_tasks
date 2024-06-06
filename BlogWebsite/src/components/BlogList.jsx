@@ -24,11 +24,16 @@ const BlogList = () => {
 
   return (
     <div>
-      <h1>Blog List</h1>
+    <div style={{width:"100%",padding:"10px",backgroundColor:"orange",textAlign:"center"}}>
+    
+      <h1>Blog Website</h1>
       <button onClick={handleAdd}>Add New Blog</button>
-      <ul>
+    </div>
+     <div  >
+     
+      <ul style={{display:"flex", flexDirection:"row",flexWrap:"wrap"}}>
         {blogs.map(blog => (
-          <li key={blog.id}>
+          <li key={blog.id} style={{padding:"5px",margin:"5px"}}>
             <h3>{blog.title}</h3>
              {blog.imageUrl && <img src={blog.imageUrl} alt={blog.title} style={{ maxWidth: '200px' }} />}
              <p>{blog.content}</p>
@@ -37,6 +42,8 @@ const BlogList = () => {
           </li>
         ))}
       </ul>
+        
+     </div>
       {isModalOpen && (
         <Modal onClose={() => setIsModalOpen(false)}>
           <BlogForm blog={currentBlog} onClose={() => setIsModalOpen(false)} />

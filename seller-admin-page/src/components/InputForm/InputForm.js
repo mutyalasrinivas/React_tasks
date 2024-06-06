@@ -1,13 +1,14 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState,useEffect } from "react";
 import { TotalContext } from "../../Context";
+ 
 const InputForm=()=>{
     
     const [id,setId]=useState()
     const [price,setPrice]=useState()
     const [name,setName]=useState()
     
-const { products, totalPrice, setProducts, setTotalPrice }=useContext(TotalContext)
-  
+const { products, totalPrice, setProducts, setTotalPrice,handleDeleteProduct }=useContext(TotalContext)
+ 
 const idHandler=(e)=>{
     setId(e.target.value)
      
@@ -45,7 +46,7 @@ const submitHandler=(e )=>{
         </form>
      <div>
         <h1>Products::</h1>
-        {products.map((product)=><li key={product.id}>product ID:{product.id}--product Price{product.price}-- product Name {product.name}</li>)}
+        {products.map((product)=><li key={product.id}>product ID:{product.id}--product Price{product.price}-- product Name {product.name}<button onClick={() => handleDeleteProduct(product.id)}>Delete</button></li>)}
      </div>
      <h3>Total Amount :${totalPrice}</h3>
      </div>

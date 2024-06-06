@@ -5,7 +5,9 @@ const TotalContext=createContext({
     totalPrice: 0,
     setProducts: () => {},
     setTotalPrice: () => {},
+    handleDeleteProduct: () => {}
 })
+
 
 const TotalContextProvider=({children})=>{
     const [products,setProducts]=useState([]);
@@ -18,9 +20,20 @@ const TotalContextProvider=({children})=>{
             const totalFromStorage = parsedProducts.reduce((sum, product) => sum + parseFloat(product.price), 0);
             setTotalPrice(totalFromStorage);
           }
-    },[]);
+    },[])
+    const handleDeleteProduct = (idToDelete) => {
+        const filteredProducts=products.filter((product) => product.id !== idToDelete) 
+        setProducts(filteredProducts);
+        
+         localStorage.setItem('products', JSON.stringify(filteredProducts));
+ 
+    
+        // Update the total price after removing the product
+        const updatedTotalPrice = totalPrice - parseFloat(products.find((product) => product.id === idToDelete).price);
+        setTotalPrice(updatedTotalPrice);
+      };
     return(
-        <TotalContext.Provider value={{ products, totalPrice, setProducts, setTotalPrice }}>
+        <TotalContext.Provider value={{ products, totalPrice, setProducts, setTotalPrice,handleDeleteProduct }}>
             {children}
         </TotalContext.Provider>
     )
