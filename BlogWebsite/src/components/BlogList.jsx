@@ -33,7 +33,7 @@ const BlogList = () => {
              {blog.imageUrl && <img src={blog.imageUrl} alt={blog.title} style={{ maxWidth: '200px' }} />}
              <p>{blog.content}</p>
             <button onClick={() => handleEdit(blog)}>Edit</button>
-            <button onClick={() => handleDelete(blog.id)}>Edit</button>
+            <button onClick={() => handleDelete(blog.id)}>Delete</button>
           </li>
         ))}
       </ul>
