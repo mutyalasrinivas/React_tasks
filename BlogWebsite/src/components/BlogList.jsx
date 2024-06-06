@@ -4,8 +4,8 @@ import BlogForm from './BlogForm';
 import Modal from './UI/Modal';
 
 const BlogList = () => {
-  const { blogs } = useContext(BlogContext);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { blogs,setBlogs } = useContext(BlogContext);
+   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentBlog, setCurrentBlog] = useState(null);
 
   const handleEdit = (blog) => {
@@ -17,6 +17,10 @@ const BlogList = () => {
     setCurrentBlog(null);
     setIsModalOpen(true);
   };
+  const handleDelete=(id)=>{
+    //delete logic here?
+     setBlogs(blogs.filter((blog)=>blog.id!==id))
+  }
 
   return (
     <div>
@@ -26,8 +30,10 @@ const BlogList = () => {
         {blogs.map(blog => (
           <li key={blog.id}>
             <h3>{blog.title}</h3>
-            {blog.imageUrl && <img src={blog.imageUrl} alt={blog.title} style={{ maxWidth: '200px' }} />}
+             {blog.imageUrl && <img src={blog.imageUrl} alt={blog.title} style={{ maxWidth: '200px' }} />}
+             <p>{blog.content}</p>
             <button onClick={() => handleEdit(blog)}>Edit</button>
+            <button onClick={() => handleDelete(blog.id)}>Edit</button>
           </li>
         ))}
       </ul>
